@@ -265,7 +265,7 @@ if selected_devices:
                     f"{df['uplink_mbps'].median():.2f}"
                 ]
             }
-            st.dataframe(pd.DataFrame(throughput_stats), width='stretch', hide_index=True)
+            st.dataframe(pd.DataFrame(throughput_stats), use_container_width=True, hide_index=True)
         
         with col2:
             # Estatísticas Diárias
@@ -286,7 +286,7 @@ if selected_devices:
                         f"{len(daily_df)} dias"
                     ]
                 }
-                st.dataframe(pd.DataFrame(daily_stats), width='stretch', hide_index=True)
+                st.dataframe(pd.DataFrame(daily_stats), use_container_width=True, hide_index=True)
             else:
                 st.info("Nenhuma estatística diária disponível")
         
@@ -307,7 +307,7 @@ if selected_devices:
                     })
                 
                 summary_df = pd.DataFrame(summary_data)
-                st.dataframe(summary_df, width='stretch')
+                st.dataframe(summary_df, use_container_width=True)
         
         # Gráficos
         st.subheader("📈 Gráficos")
@@ -348,7 +348,7 @@ if selected_devices:
                 yaxis_title="Mbps",
                 hovermode='x unified'
             )
-            st.plotly_chart(fig, width='stretch')
+            st.plotly_chart(fig, use_container_width=True)
             
         with tab2:
             # Consumo diário por dispositivo
@@ -384,7 +384,7 @@ if selected_devices:
                     barmode='group',
                     showlegend=True
                 )
-                st.plotly_chart(fig_daily, width='stretch')
+                st.plotly_chart(fig_daily, use_container_width=True)
                 
                 # Gráfico de consumo acumulado
                 fig_cum = go.Figure()
@@ -448,14 +448,14 @@ if selected_devices:
                         x=1
                     )
                 )
-                st.plotly_chart(fig_cum, width='stretch')
+                st.plotly_chart(fig_cum, use_container_width=True)
                 
                 # Tabela de consumo diário
                 st.subheader("📋 Tabela de Consumo Diário")
                 daily_display = daily_df.copy()
                 daily_display['date'] = daily_display['date'].astype(str)
                 daily_display = daily_display.round(3)
-                st.dataframe(daily_display, width='stretch')
+                st.dataframe(daily_display, use_container_width=True)
             else:
                 st.warning("Não foi possível calcular o consumo diário")
         
@@ -507,11 +507,11 @@ if selected_devices:
                     yaxis_title="Throughput (Mbps)",
                     barmode='group'
                 )
-                st.plotly_chart(fig_compare, width='stretch')
+                st.plotly_chart(fig_compare, use_container_width=True)
                 
                 # Tabela comparativa
                 st.subheader("📋 Tabela Comparativa")
-                st.dataframe(stats_df, width='stretch')
+                st.dataframe(stats_df, use_container_width=True)
             else:
                 st.info("Selecione múltiplos dispositivos para ver comparações")
         
@@ -523,13 +523,13 @@ if selected_devices:
                 fig_hist = px.histogram(df, x='downlink_mbps', 
                                       title='Distribuição Download (Mbps) por Dispositivo', 
                                       nbins=20)
-                st.plotly_chart(fig_hist, width='stretch')
+                st.plotly_chart(fig_hist, use_container_width=True)
             
             with col2:
                 fig_hist = px.histogram(df, x='uplink_mbps', 
                                       title='Distribuição Upload (Mbps) por Dispositivo', 
                                       nbins=20)
-                st.plotly_chart(fig_hist, width='stretch')
+                st.plotly_chart(fig_hist, use_container_width=True)
         
         # Botão de exportação PDF
         st.sidebar.markdown("---")

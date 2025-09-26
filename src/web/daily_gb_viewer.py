@@ -258,7 +258,7 @@ if selected_devices:
                 showlegend=True,
                 barmode='group'
             )
-            st.plotly_chart(fig_daily, width='stretch')
+            st.plotly_chart(fig_daily, use_container_width=True)
             
             # Gráfico de consumo acumulado
             fig_cum = go.Figure()
@@ -322,14 +322,14 @@ if selected_devices:
                     x=1
                 )
             )
-            st.plotly_chart(fig_cum, width='stretch')
+            st.plotly_chart(fig_cum, use_container_width=True)
             
             # Tabela de consumo diário
             st.subheader("📋 Tabela de Consumo Diário")
             daily_display = daily_df.copy()
             daily_display['date'] = daily_display['date'].astype(str)
             daily_display = daily_display.round(3)
-            st.dataframe(daily_display, width='stretch')
+            st.dataframe(daily_display, use_container_width=True)
             
             # Estatísticas gerais
             st.subheader("📊 Estatísticas Gerais")
