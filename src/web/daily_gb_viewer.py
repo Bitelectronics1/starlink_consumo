@@ -14,9 +14,11 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'reports'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'database'))
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'config'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'auth'))
 from pdf_generator import generate_pdf_report
 from influx_client import StarlinkInfluxClient
 from influx_config import TIME_PERIODS, BIT_STAR_DEVICES, get_device_display_name
+from authentication import check_password, show_logout_button
 
 # Configuração da página
 st.set_page_config(
@@ -24,6 +26,13 @@ st.set_page_config(
     page_icon="📊",
     layout="wide"
 )
+
+# Verifica autenticação
+if not check_password():
+    st.stop()
+
+# Mostra botão de logout
+show_logout_button()
 
 st.title("📊 Consumo Diário de Dados Starlink (GB)")
 st.markdown("---")
