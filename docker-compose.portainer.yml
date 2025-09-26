@@ -5,6 +5,8 @@ services:
     build: 
       context: https://github.com/Bitelectronics1/starlink_consumo.git
       dockerfile: Dockerfile
+      args:
+        BUILDKIT_INLINE_CACHE: 1
     container_name: starlink-data-analyzer
     ports:
       - "8501:8501"
@@ -32,6 +34,8 @@ services:
     build: 
       context: https://github.com/Bitelectronics1/starlink_consumo.git
       dockerfile: Dockerfile
+      args:
+        BUILDKIT_INLINE_CACHE: 1
     container_name: starlink-daily-viewer
     ports:
       - "8502:8501"
